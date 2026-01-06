@@ -1,0 +1,5 @@
+<div class="row">
+  <mat-icon>{{ icon() }}</mat-icon>
+  <span>{{ label() }}</span>
+  <mat-slide-toggle [checked]="state()" (change)="changeState()"></mat-slide-toggle>
+</div>

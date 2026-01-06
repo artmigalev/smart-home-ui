@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  border-top: 2px solid var(--mat-sys-surface-variant);
+  h2 {
+    font: var(--mat-sys-title-large);
+    font-weight: var(--mat-sys-title-medium-weight);
+    font-family: var(--mat-sys-title-medium-font);
+  }
+}

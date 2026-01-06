@@ -9,7 +9,7 @@ export default defineConfig([
   eslintPluginUnicorn.configs.recommended,
 
   {
-
+    ignores: ['**/*.spec.ts'],
 
     files: ['**/*.ts'],
     extends: [
@@ -20,6 +20,7 @@ export default defineConfig([
     ],
     processor: angular.processInlineTemplates,
     rules: {
+      'unicorn/consistent-function-scoping': ['error', { checkArrowFunctions: false }],
       'unicorn/better-regex': 'warn',
       '@angular-eslint/directive-selector': [
         'error',
@@ -41,10 +42,7 @@ export default defineConfig([
   },
   {
     files: ['**/*.html'],
-    extends: [
-      angular.configs.templateRecommended,
-      angular.configs.templateAccessibility,
-    ],
+    extends: [angular.configs.templateRecommended, angular.configs.templateAccessibility],
     rules: {},
   },
 ]);

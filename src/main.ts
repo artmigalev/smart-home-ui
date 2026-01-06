@@ -3,7 +3,7 @@ import { appConfig } from './app/app.config';
 import { App } from './app/app';
 
 try {
-  bootstrapApplication(App, appConfig);
+  await bootstrapApplication(App, appConfig);
 } catch (error) {
-  console.error(error);
+  console.log(error);
 }

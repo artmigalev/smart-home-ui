@@ -1,0 +1,20 @@
+<mat-card>
+  <mat-card-header>
+    @if (isCardToggle()) {
+      <mat-slide-toggle [checked]="stateCard()"></mat-slide-toggle>
+    }
+    <mat-card-title>{{ title() }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="{{ layout() }}">
+    @for (item of items(); track $index) {
+      @switch (item.type) {
+        @case (TypeEntities.sensor) {
+          <app-sensor [layout]="layout()" [item]="item"></app-sensor>
+        }
+        @case (TypeEntities.device) {
+          <app-device [item]="item" (stateChange)="getStateCard($event)"></app-device>
+        }
+      }
+    }
+  </mat-card-content>
+</mat-card>

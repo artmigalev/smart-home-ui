@@ -1,0 +1,26 @@
+@use '@angular/material' as mat;
+
+:host {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+
+  @include mat.fab-overrides(
+    (
+      container-color: var(--mat-sys-on-surface-variant),
+      foreground-color: var(--mat-sys-surface),
+      extended-label-text-size: var(--mat-sys-body-large-size),
+      extended-container-shape: 5px,
+    )
+  );
+}
+.active {
+  font-size: --mat-sys-t;
+  @include mat.fab-overrides(
+    (
+      container-color: var(--mat-sys-on-primary-container),
+    )
+  );
+}

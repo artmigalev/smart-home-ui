@@ -1,0 +1,6 @@
+@use '../card.scss';
+:host {
+  min-width: 320px;
+  width: 100%;
+  display: block;
+}

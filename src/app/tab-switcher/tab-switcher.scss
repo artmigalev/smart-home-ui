@@ -1,0 +1,24 @@
+@use '@angular/material' as mat;
+:host {
+  width: 100%;
+  border-bottom: 2px solid var(--mat-sys-surface-variant);
+  background-color: var(--mat-sys-on-primary-fixed);
+  .link {
+    padding: 4px 0 4px 0;
+  }
+  @include mat.button-overrides(
+    (
+      text-label-text-size: var(--mat-sys-body-large-size),
+      text-container-shape: 0,
+      text-container-height: 4rem,
+    )
+  );
+}
+.active {
+  @include mat.button-overrides(
+    (
+      text-label-text-color: var(--mat-sys-surface-bright),
+    )
+  );
+  border-bottom: 1px solid var(--mat-sys-surface-bright);
+}

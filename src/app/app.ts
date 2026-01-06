@@ -1,9 +1,12 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import SidebarComponent from './sidebar/sidebar.component';
+import DashboardComponent from './dashboard/dashboard';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [MatSlideToggleModule, SidebarComponent, DashboardComponent],
+  standalone: true,
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
