@@ -6,7 +6,7 @@
     @for (item of items(); track $index) {
       @switch (item.type) {
         @case (TypeEntities.sensor) {
-          <app-sensor [layout]="layout()" [item]="item"></app-sensor>
+          <app-sensor [layout]="layout()" [sensor]="item"></app-sensor>
         }
         @case (TypeEntities.device) {
           <app-device [item]="item"></app-device>

@@ -1,12 +1,18 @@
 <ul class="card-list" role="list">
-  @for (card of cards; track card.id) {
+  @for (card of cards(); track card.id) {
     <li class="list-item" role="listitem">
       @switch (card.layout) {
         @case (Layouts.singleDevice) {
-          <app-single-device-card [card]="card"></app-single-device-card>
+          <app-single-device-card
+            (toggleDevice)="toggledData.emit($event)"
+            [card]="card"
+          ></app-single-device-card>
         }
         @default {
-          <app-multi-device-card [card]="card"></app-multi-device-card>
+          <app-multi-device-card
+            (toggleDevice)="toggledData.emit($event)"
+            [card]="card"
+          ></app-multi-device-card>
         }
       }
     </li>

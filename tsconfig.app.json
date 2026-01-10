@@ -4,8 +4,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "typeRoots": ["./node_modules/@types", "./src/types"]
+    "typeRoots": ["./node_modules/@types", "src/app/types"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/types/**/*"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/app/types/**/*"],
   "exclude": ["src/**/*.spec.ts"]
 }

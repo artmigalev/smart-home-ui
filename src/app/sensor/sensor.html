@@ -1,25 +1,25 @@
 <div class="{{ containerClass }}">
-  @switch (layout) {
+  @switch (layout()) {
     @case (Layout.verticalLayout) {
       <mat-icon>{{ icon }}</mat-icon>
       <span>{{ label }}</span>
       <div>
-        <span>{{ value.amount }}</span>
-        <span>{{ value.unit }}</span>
+        <span>{{ value?.amount }}</span>
+        <span>{{ value?.unit }}</span>
       </div>
     }
     @case (Layout.horizontalLayout) {
       <span>{{ label }}</span>
       <mat-icon>{{ icon }}</mat-icon>
-      <div class="{{ layout }}">
-        <span>{{ value.amount | valueConvertToString: value.unit }}</span>
+      <div class="{{ layout() }}">
+        <span>{{ value?.amount! | valueConvertToString: value?.unit! }}</span>
       </div>
     }
     @case (Layout.singleDevice) {
       <mat-icon>{{ icon }}</mat-icon>
       <span>{{ label }}</span>
-      <div class="{{ layout }}">
-        <span>{{ value.amount | valueConvertToString: value.unit }}</span>
+      <div class="{{ layout() }}">
+        <span>{{ value?.amount! | valueConvertToString: value?.unit! }}</span>
       </div>
     }
   }

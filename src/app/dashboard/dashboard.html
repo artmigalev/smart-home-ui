@@ -1,2 +1,2 @@
-<app-tab-switcher></app-tab-switcher>
-<app-card-list></app-card-list>
+<app-tab-switcher [tabs]="tabs()" (toggledTab)="newTabId.emit($event)"></app-tab-switcher>
+<app-card-list (toggledData)="cardListData.emit($event)" [activeTab]="tab()"></app-card-list>

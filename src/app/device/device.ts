@@ -1,7 +1,7 @@
-import { Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
-import { Device } from '../../types/device.interface';
+import { DeviceType, ItemCard } from '../types/item-card.interface';
 
 @Component({
   selector: 'app-device',
@@ -10,15 +10,15 @@ import { Device } from '../../types/device.interface';
   styleUrl: './device.scss',
 })
 export default class DeviceComponent {
-  item = input.required<Device>();
+  item = input.required<ItemCard>();
 
-  stateChange = output<boolean>();
-  state = signal(Boolean(computed(() => this.item().state)));
+  state = computed(() => this.item().state);
   icon = computed(() => this.item().icon);
   label = computed(() => this.item().label);
 
-  changeState() {
-    // this.state.set(state => !state);
-    this.stateChange.emit(this.state());
+  changedDevice = output<DeviceType>();
+
+  changeDevice() {
+    if (Object.hasOwn(this.item(), 'state')) this.changedDevice.emit(this.item() as DeviceType);
   }
 }

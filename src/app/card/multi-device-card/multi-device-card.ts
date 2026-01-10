@@ -1,9 +1,8 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 import CardComponent from '../card';
 import SensorComponent from '../../sensor/sensor';
 import DeviceComponent from '../../device/device';
-import { TypeEntities } from '../../shared/type-entities.enum';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 
 @Component({
@@ -21,11 +20,4 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
   templateUrl: './multi-device-card.html',
   styleUrl: './multi-device-card.scss',
 })
-export class MultiDeviceCard extends CardComponent {
-  isCardToggle = computed(() => this.items().some((item) => item.type === TypeEntities.device));
-  stateCard = signal<boolean>(false);
-
-  getStateCard(state: boolean) {
-    this.stateCard.set(state);
-  }
-}
+export class MultiDeviceCard extends CardComponent {}
