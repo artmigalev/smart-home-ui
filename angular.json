@@ -12,6 +12,12 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
+        },
+        "@schematics/angular:interface": {
+          "type": "interface"
+        },
+        "@schematics/angular:enum": {
+          "type": "enum"
         }
       },
       "root": "",
