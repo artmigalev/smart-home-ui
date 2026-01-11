@@ -1,9 +1,9 @@
 import { Component, input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-import { Layouts } from '../shared/layouts.enum';
-import { SensorPipe } from '../shared/sensor-pipe';
-import { Card } from '../types/card.interface';
-import { ItemCard } from '../types/item-card.interface';
+import { Layouts } from '@app/shared/layouts.enum';
+import { Card } from '@app/types/card.interface';
+import { ItemCard } from '@app/types/item-card.interface';
+import { SensorPipe } from '@pipes/sensor-pipe';
 
 @Component({
   selector: 'app-sensor',

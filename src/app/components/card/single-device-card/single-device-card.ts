@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 import CardComponent from '../card';
-import DeviceComponent from '../../device/device';
-import SensorComponent from '../../sensor/sensor';
+import DeviceComponent from '@components/device/device';
+import SensorComponent from '@components/sensor/sensor';
 
 @Component({
   selector: 'app-single-device-card',

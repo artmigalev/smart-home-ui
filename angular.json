@@ -18,6 +18,9 @@
         },
         "@schematics/angular:enum": {
           "type": "enum"
+        },
+        "@schematics/angular:service": {
+          "type": "service"
         }
       },
       "root": "",

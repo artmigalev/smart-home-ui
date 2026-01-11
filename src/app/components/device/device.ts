@@ -1,7 +1,7 @@
 import { Component, computed, input, output } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
-import { DeviceType, ItemCard } from '../types/item-card.interface';
+import { DeviceType, ItemCard } from '@app/types/item-card.interface';
 
 @Component({
   selector: 'app-device',

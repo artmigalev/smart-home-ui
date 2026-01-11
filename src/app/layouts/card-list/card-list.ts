@@ -1,10 +1,10 @@
 import { Component, computed, input, output } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
-import { ToggledData } from '../types/card.interface';
-import { MultiDeviceCard } from '../card/multi-device-card/multi-device-card';
-import { SingleDeviceCard } from '../card/single-device-card/single-device-card';
-import { Layouts } from '../shared/layouts.enum';
-import { Tab } from '../types/tab.interface';
+import { Layouts } from '@shared/layouts.enum';
+import { MultiDeviceCard } from '@components/card/multi-device-card/multi-device-card';
+import { SingleDeviceCard } from '@components/card/single-device-card/single-device-card';
+import { Tab } from '@app/types/tab.interface';
+import { ToggledData } from '@app/types/card.interface';
 
 @Component({
   selector: 'app-card-list',
