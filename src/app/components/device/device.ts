@@ -1,7 +1,9 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-import { MatSlideToggle } from '@angular/material/slide-toggle';
-import { DeviceType, ItemCard } from '@app/types/item-card.interface';
+import { MatSlideToggle, MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { ItemService } from '@app/data/services/item/item.service';
+import { Card } from '@app/types/card.interface';
+import { ItemCard } from '@app/types/item-card.interface';
 
 @Component({
   selector: 'app-device',
@@ -10,15 +12,15 @@ import { DeviceType, ItemCard } from '@app/types/item-card.interface';
   styleUrl: './device.scss',
 })
 export default class DeviceComponent {
+  serviceItem = inject(ItemService);
   item = input.required<ItemCard>();
+  cardId = input.required<Card['id']>();
 
   state = computed(() => this.item().state);
   icon = computed(() => this.item().icon);
   label = computed(() => this.item().label);
 
-  changedDevice = output<DeviceType>();
-
-  changeDevice() {
-    if (Object.hasOwn(this.item(), 'state')) this.changedDevice.emit(this.item() as DeviceType);
+  changeDevice(event: MatSlideToggleChange) {
+    this.serviceItem.changeStateDevice(event.checked, this.item(), this.cardId());
   }
 }

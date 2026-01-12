@@ -3,7 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-sidebar-header',
   imports: [MatIconModule],
-  templateUrl: './sidebar-header.component.html',
-  styleUrl: './sidebar-header.component.scss',
+  templateUrl: './sidebar-header.html',
+  styleUrl: './sidebar-header.scss',
 })
 export default class SidebarHeaderComponent {}

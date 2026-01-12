@@ -9,7 +9,7 @@
           <app-sensor [layout]="layout()" [sensor]="item"></app-sensor>
         }
         @case (TypeEntities.device) {
-          <app-device [item]="item"></app-device>
+          <app-device [cardId]="id()" [item]="item"></app-device>
         }
       }
     }

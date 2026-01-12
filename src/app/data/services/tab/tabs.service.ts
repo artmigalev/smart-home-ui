@@ -1,6 +1,7 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { ResponseData } from '../../../types/response.interface';
 import { Tab } from '../../../types/tab.interface';
+import { Card } from '@app/types/card.interface';
 const fetchData: ResponseData = {
   tabs: [
     {
@@ -200,7 +201,7 @@ const fetchData: ResponseData = {
 export class TabsService {
   protected _tabs = signal(fetchData.tabs);
 
-  protected _activeIdTab = signal<Tab['id']>(this._tabs()[0]['id']);
+  protected _activeIdTab = signal<Tab['id']>(this._tabs()[0]?.id);
 
   activateTab(id: Tab['id']) {
     this._activeIdTab.set(id);
@@ -209,6 +210,21 @@ export class TabsService {
   tabsNamesAndIds = computed(() =>
     this._tabs().map((tab) => ({ id: tab['id'], title: tab['title'] })),
   );
+  tabs = this._tabs.asReadonly();
 
   tab = computed(() => this._tabs().find((tab) => tab.id === this._activeIdTab()));
+
+  getActiveTab(id: Tab['id']): Tab | undefined {
+    return this._tabs().find((t) => t.id === id);
+  }
+
+  updateTabCards(newCards: Card[]): void {
+    const updateTab: Tab = {
+      ...this.tab()!,
+      cards: newCards,
+    };
+    this._tabs.update((previous) =>
+      previous.map((tab) => (tab.id === updateTab.id ? updateTab : tab)),
+    );
+  }
 }

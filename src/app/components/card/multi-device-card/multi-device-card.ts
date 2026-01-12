@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 import CardComponent from '../card';
 import SensorComponent from '../../sensor/sensor';
@@ -20,4 +20,8 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
   templateUrl: './multi-device-card.html',
   styleUrl: './multi-device-card.scss',
 })
-export class MultiDeviceCard extends CardComponent {}
+export class MultiDeviceCard extends CardComponent {
+  devices = computed(() => this.items().filter((index) => index.type === 'device'));
+
+  isToggled = computed(() => this.devices().some((development) => development.state));
+}

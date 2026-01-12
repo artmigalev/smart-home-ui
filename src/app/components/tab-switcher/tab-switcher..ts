@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
-import { TabsService } from '@services/tab-service/tabs.service';
+import { TabsService } from '@app/data/services/tab/tabs.service';
 
 @Component({
   selector: 'app-tab-switcher',

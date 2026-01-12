@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-header>
-    @if (devices.length) {
-      <mat-slide-toggle [checked]="hasToggled()"></mat-slide-toggle>
+    @if (devices().length) {
+      <mat-slide-toggle [checked]="isToggled()"></mat-slide-toggle>
     }
     <mat-card-title>{{ title() }}</mat-card-title>
   </mat-card-header>
@@ -9,10 +9,10 @@
     @for (item of items(); track $index) {
       @switch (item.type) {
         @case (TypeEntities.sensor) {
-          <app-sensor [layout]="layout()" [sensor]="item"></app-sensor>
+          <app-sensor [layout]="layout()" [sensor]="item" />
         }
         @case (TypeEntities.device) {
-          <app-device [item]="item" (changedDevice)="toggleCard($event)"></app-device>
+          <app-device [cardId]="id()" [item]="item"></app-device>
         }
       }
     }

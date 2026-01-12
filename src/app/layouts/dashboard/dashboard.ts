@@ -1,9 +1,7 @@
-import { Component, inject, output } from '@angular/core';
-import { TabsService } from '@services/tab-service/tabs.service';
+import { Component, computed, inject } from '@angular/core';
+import { TabsService } from '@app/data/services/tab/tabs.service';
 import TabSwitcherComponent from '@components/tab-switcher/tab-switcher.';
 import CardListComponent from '@layouts/card-list/card-list';
-import { Tab } from '@app/types/tab.interface';
-import { ToggledData } from '@app/types/card.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +13,5 @@ import { ToggledData } from '@app/types/card.interface';
 export default class DashboardComponent {
   tadService = inject(TabsService);
 
-  newTabId = output<Tab['id']>();
-
-  cardListData = output<ToggledData>();
+  activeTab = computed(() => this.tadService.tab());
 }
