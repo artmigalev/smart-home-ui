@@ -1,5 +1,17 @@
-<div class="row">
-  <mat-icon [appDeviceHighlight]="state()">{{ icon() }}</mat-icon>
-  <span>{{ label() }}</span>
-  <mat-slide-toggle [checked]="state()" (change)="changeDevice($event)"></mat-slide-toggle>
-</div>
+@if (typeCard() === layouts.singleDevice) {
+  <div class="row">
+    <span>{{ label() }}</span>
+    <mat-icon
+      class="singleDeviceIcon"
+      [appDeviceHighlight]="state()"
+      (click)="changeDevice($event)"
+      >{{ icon() }}</mat-icon
+    >
+  </div>
+} @else {
+  <div class="row">
+    <mat-icon [appDeviceHighlight]="state()">{{ icon() }}</mat-icon>
+    <span>{{ label() }}</span>
+    <mat-slide-toggle [checked]="state()" (change)="changeDevice($event)"></mat-slide-toggle>
+  </div>
+}

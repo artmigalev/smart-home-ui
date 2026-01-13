@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-header>
-    @if (devices().length) {
+    @if (devices().length >= 2) {
       <mat-slide-toggle [checked]="isToggled()"></mat-slide-toggle>
     }
     <mat-card-title>{{ title() }}</mat-card-title>

@@ -1,5 +1,5 @@
 @use '../card/card.scss';
 
-.activeIcon {
-  color: var(--mat-sys-tertiary);
+.singleDeviceIcon:hover {
+  cursor: pointer;
 }
