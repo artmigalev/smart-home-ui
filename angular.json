@@ -11,7 +11,8 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "standalone": true
         },
         "@schematics/angular:interface": {
           "type": "interface"
@@ -21,6 +22,10 @@
         },
         "@schematics/angular:service": {
           "type": "service"
+        },
+        "@schematics/angular:directive": {
+          "type": "directive",
+          "standalone": true
         }
       },
       "root": "",

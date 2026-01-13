@@ -1,1 +1,5 @@
 @use '../card/card.scss';
+
+.activeIcon {
+  color: var(--mat-sys-tertiary);
+}
