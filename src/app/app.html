@@ -1,2 +1,9 @@
-<app-sidebar></app-sidebar>
-<app-dashboard></app-dashboard>
+<button type="button" class="menu-burger" matButton (click)="drawer.toggle()">
+  <mat-icon>{{ isOpen() }}</mat-icon>
+</button>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer (openedChange)="setStatusMenu($event)" #drawer class="sidenav" mode="side">
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <app-dashboard></app-dashboard>
+</mat-drawer-container>

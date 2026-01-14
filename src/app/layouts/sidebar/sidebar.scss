@@ -1,9 +1,8 @@
 :host {
+  display: block;
   height: 100%;
   width: 100%;
-  max-width: 250px;
   background: var(--mat-sys-surface-container);
-  border-right: 2px solid var(--mat-sys-surface-variant);
   .bar {
     display: grid;
     grid-auto-columns: 1fr;
