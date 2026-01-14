@@ -30,7 +30,6 @@ export class ItemService {
   }
 
   updateItems(item: ItemCard, cardId: Card['id']) {
-    console.log(this._items());
     const card = this.cardService.getCard(cardId);
     const newItems = this._items()[cardId].map((cardItem) =>
       cardItem.label === item.label ? item : cardItem,

@@ -1,9 +1,10 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, HostListener, inject, signal } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import DashboardComponent from './layouts/dashboard/dashboard';
 import SidebarComponent from '@app/layouts/sidebar/sidebar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIcon } from '@angular/material/icon';
+import { SidebarService } from './data/services/side-bar/sidebar.service';
 @Component({
   selector: 'app-root',
   imports: [MatSlideToggleModule, SidebarComponent, DashboardComponent, MatSidenavModule, MatIcon],
@@ -12,20 +13,19 @@ import { MatIcon } from '@angular/material/icon';
   styleUrl: './app.scss',
 })
 export class App {
+  serviceSidebar = inject(SidebarService);
   protected readonly title = signal('smart-home-ui');
 
   menuIconName = {
     open: 'menu_open',
     close: 'menu',
   };
-  private burgerStatus = signal<string>(this.menuIconName.close);
-  isOpen = computed(() => this.burgerStatus());
+  burgerState = computed(() =>
+    this.serviceSidebar.openedDrawer() === true ? this.menuIconName.open : this.menuIconName.close,
+  );
 
-  setStatusMenu(event: boolean) {
-    if (event === true) {
-      this.burgerStatus.set(this.menuIconName.open);
-    } else {
-      this.burgerStatus.set(this.menuIconName.close);
-    }
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    if (event.isTrusted) this.serviceSidebar.onWidth();
   }
 }

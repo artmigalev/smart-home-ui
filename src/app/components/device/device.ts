@@ -2,7 +2,7 @@ import { Component, computed, inject, input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatSlideToggle, MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { ItemService } from '@app/data/services/item/item.service';
-import { DeviceDirective } from '@app/shared/derective/device/device.directive';
+import { DeviceDirective } from '@app/shared/directive/device/device.directive';
 import { Layouts } from '@app/shared/layouts.enum';
 import { Card } from '@app/types/card.interface';
 import { ItemCard } from '@app/types/item-card.interface';

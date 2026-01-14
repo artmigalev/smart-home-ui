@@ -16,6 +16,5 @@ export default class TabSwitcherComponent {
 
   toggleTab(event: MatTabChangeEvent) {
     this.tabService.activateTab(event.tab.id!);
-    console.log(event.tab.id);
   }
 }
