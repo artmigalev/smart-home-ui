@@ -1,8 +1,18 @@
-<a matFab extended routerLink="." class="active">
-  <mat-icon>dashboard</mat-icon>
-  {{ activeTab()?.title }}
-</a>
-<a matFab extended routerLink=".">
-  <mat-icon>info</mat-icon>
-  About
-</a>
+@if (userIsAuth()) {
+  <div class="container-tabs">
+    <a matFab extended routerLink="." class="active">
+      <mat-icon>dashboard</mat-icon>
+      {{ activeTab()?.title }}
+    </a>
+    <a matFab extended routerLink=".">
+      <mat-icon>info</mat-icon>
+      About
+    </a>
+  </div>
+  <div class="container-info">
+    <span>A</span>
+    <a matButton routerLink="/">
+      <mat-icon>logout</mat-icon>
+    </a>
+  </div>
+}
