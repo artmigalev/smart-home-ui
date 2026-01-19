@@ -1,23 +1,4 @@
 :host {
   width: 100%;
   height: 100%;
-
-  display: flex;
-  flex-direction: row;
-
-  mat-drawer {
-    border-right: 2px solid var(--mat-sys-surface-variant);
-    border-radius: 0;
-    max-width: 250px;
-    width: 30%;
-  }
-}
-
-.menu-burger {
-  background: transparent;
-  border: none;
-  position: absolute;
-  top: 10px;
-  z-index: 999;
-  cursor: pointer;
 }

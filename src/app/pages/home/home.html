@@ -1,0 +1,19 @@
+<button type="button" class="menu-burger" matButton (click)="drawer.toggle()">
+  <mat-icon>{{ burgerState() }}</mat-icon>
+</button>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer
+    [opened]="serviceSidebar.openedDrawer()"
+    (openedChange)="serviceSidebar.changeStateBurger($event)"
+    #drawer
+    class="sidenav"
+    mode="side"
+  >
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  @if (userIsAuth()) {
+    <app-dashboard></app-dashboard>
+  } @else {
+    <app-about></app-about>
+  }
+</mat-drawer-container>
