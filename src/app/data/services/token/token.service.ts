@@ -25,7 +25,7 @@ export class TokenService {
     if (userToken satisfies UserToken) {
       return userToken['token'];
     }
-    return userToken;
+    return undefined;
   }
 
   tokenRemove(): void {
