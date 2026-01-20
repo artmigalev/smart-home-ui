@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { Layouts } from '@app/shared/layouts.enum';
 import { Card } from '@app/types/card.interface';
-import { ItemCard } from '@app/types/item-card.interface';
+import { SensorItem } from '@app/types/sensor.interface';
 import { SensorPipe } from '@pipes/sensor-pipe';
 
 @Component({
@@ -12,7 +12,7 @@ import { SensorPipe } from '@pipes/sensor-pipe';
   styleUrl: './sensor.scss',
 })
 export default class SensorComponent {
-  sensor = input.required<ItemCard>();
+  sensor = input.required<SensorItem>();
   layout = input.required<Card['layout']>();
   readonly Layout = Layouts;
   get icon() {

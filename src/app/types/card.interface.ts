@@ -1,15 +1,12 @@
-import { DeviceType, ItemCard } from './item-card.interface';
+import { DeviceItem } from './device.interface';
+import { SensorItem } from './sensor.interface';
 
 export interface Card {
   id: string;
   title: string;
-  layout: string;
-  items: ItemCard[];
-  state?: boolean;
+  layout: 'singleDevice' | 'horizontalLayout' | 'verticalLayout';
+
+  items: CardItem[];
 }
 
-export interface ToggledData {
-  statusCard: boolean;
-  cardId?: Card['id'];
-  device?: DeviceType;
-}
+export type CardItem = DeviceItem | SensorItem;

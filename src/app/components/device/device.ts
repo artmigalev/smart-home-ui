@@ -5,7 +5,7 @@ import { ItemService } from '@app/data/services/item/item.service';
 import { DeviceDirective } from '@app/shared/directive/device/device.directive';
 import { Layouts } from '@app/shared/layouts.enum';
 import { Card } from '@app/types/card.interface';
-import { ItemCard } from '@app/types/item-card.interface';
+import { DeviceItem } from '@app/types/device.interface';
 @Component({
   selector: 'app-device',
   imports: [MatIcon, MatSlideToggle, DeviceDirective],
@@ -16,7 +16,7 @@ export default class DeviceComponent {
   protected layouts = Layouts;
 
   serviceItem = inject(ItemService);
-  item = input.required<ItemCard>();
+  item = input.required<DeviceItem>();
   cardId = input.required<Card['id']>();
   typeCard = input<Card['layout']>();
 

@@ -1,6 +1,5 @@
 export enum Endpoints_GET {
   PROFILE = '/api/user/profile',
-  LOGIN = '/api/user/login',
   DASHBOARDS = '/api/dashboards',
   DASHBOARDS_ID = '/api/dashboards/:',
   DEVICES = '/api/devices',
