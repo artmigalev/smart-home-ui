@@ -1,5 +1,5 @@
 export enum UserCredentials {
-  STORAGENAME = 'currentUser',
+  STORAGENAME = 'userToken',
   USERNAME = 'username',
   PASSWORD = 'password',
 }

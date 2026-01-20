@@ -14,7 +14,7 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "preserve",
-    "typeRoots": ["./node_modules/@types", "src/app/types"],
+    "typeRoots": ["./node_modules/@types", "src/app/types/**"],
     "baseUrl": "./",
     "paths": {
       "@app/*": ["src/app/*"],
