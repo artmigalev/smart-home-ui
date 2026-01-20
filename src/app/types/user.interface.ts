@@ -1,4 +1,8 @@
-export interface User {
-  username: string;
-  password: string;
+export interface UserRequest {
+  userName: 'string';
+  password: 'string';
+}
+export interface UserProfileResponse {
+  fullName: 'string';
+  initials: 'string';
 }
