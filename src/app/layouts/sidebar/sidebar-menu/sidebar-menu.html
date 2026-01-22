@@ -1,18 +1,28 @@
-@if (userIsAuth()) {
+@if (serviceAuth.isAuthenticated()) {
   <div class="container-tabs">
-    <a matFab extended routerLink="." class="active">
-      <mat-icon>dashboard</mat-icon>
-      {{ activeTab()?.title }}
-    </a>
-    <a matFab extended routerLink=".">
-      <mat-icon>info</mat-icon>
-      About
-    </a>
+    @for (board of dashboards(); track board.id) {
+      <button
+        role="button"
+        matFab
+        extended
+        [tabIndex]="board.id"
+        (keyup)="onClickBoard(board.id)"
+        (click)="onClickBoard(board.id)"
+      >
+        <mat-icon>{{ board.icon }}</mat-icon>
+        {{ board.title }}
+      </button>
+    }
   </div>
-  <div class="container-info">
+  <!-- <div class="container-info">
     <span>A</span>
-    <a matButton routerLink="/">
+    <a matFab extended routerLink="/" (click)="serviceAuth.logout()">
       <mat-icon>logout</mat-icon>
     </a>
-  </div>
+  </div> -->
+} @else {
+  <a matFab extended routerLink="/login">
+    <mat-icon>login</mat-icon>
+    Login
+  </a>
 }

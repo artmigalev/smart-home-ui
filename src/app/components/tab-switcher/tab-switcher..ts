@@ -12,7 +12,7 @@ import { TabsService } from '@app/data/services/tab/tabs.service';
 export default class TabSwitcherComponent {
   tabService = inject(TabsService);
 
-  dataWithTabs = this.tabService.tabsNamesAndIds();
+  dataWithTabs = this.tabService.tabsNamesAndIds;
 
   toggleTab(event: MatTabChangeEvent) {
     this.tabService.activateTab(event.tab.id!);

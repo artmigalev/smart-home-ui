@@ -1,7 +1,8 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { ResponseData } from '../../../types/response.interface';
 import { Tab } from '../../../types/tab.interface';
 import { Card } from '@app/types/card.interface';
+import { DashboardService } from '../dashbord.service';
 const fetchData: ResponseData = {
   tabs: [
     {
@@ -199,6 +200,8 @@ const fetchData: ResponseData = {
   providedIn: 'root',
 })
 export class TabsService {
+  private _serviceDashboards = inject(DashboardService);
+
   protected _tabs = signal(fetchData.tabs);
 
   protected _activeIdTab = signal<Tab['id']>(this._tabs()[0]?.id);

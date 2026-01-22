@@ -20,10 +20,10 @@ export class AuthService {
   http = inject(HttpClient);
   router = inject(Router);
   serviceToken = inject(TokenService);
-  userId = this.serviceToken.token;
+  token = computed(() => this.serviceToken.token);
 
   user = rxResource({
-    params: () => this.userId(),
+    params: this.token(),
     stream: ({ params }) => (params ? this.getUser() : of()),
   });
 
@@ -42,9 +42,12 @@ export class AuthService {
         },
       });
   }
+  logout() {
+    this.serviceToken.tokenRemove();
+  }
 
   isAuthenticated = computed(() => {
-    if (this.user.value()) {
+    if (this.serviceToken.token()) {
       return true;
     }
     return false;
