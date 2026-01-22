@@ -15,7 +15,7 @@ export const authInterceptor: HttpInterceptorFn = (
 ) => {
   const router = inject(Router);
   const serviceToken = inject(TokenService);
-  const authToken = serviceToken.tokenGet();
+  const authToken = serviceToken.token();
   if (authToken) {
     const authRequestApi = request.clone({
       headers: request.headers.append('Authorization', `Bearer ${authToken}`),

@@ -44,7 +44,7 @@ export default class Login {
     });
     minLength(schemaPath.userName, 3, { message: 'This field must >= 3' });
     maxLength(schemaPath.userName, 10, { message: 'This field must <= 10' });
-    minLength(schemaPath.password, 8, { message: 'This field must >= 8' });
+    minLength(schemaPath.password, 2, { message: 'This field must >= 8' });
     maxLength(schemaPath.password, 16, { message: 'This field must <= 16' });
   });
 
