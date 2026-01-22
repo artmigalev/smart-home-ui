@@ -1,20 +1,32 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title> Welcome Home </mat-card-title>
+    <mat-card-title> Welcome </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form action="">
-      <mat-form-field>
-        <mat-label>username</mat-label>
-        <input matInput />
+      <mat-form-field appearance="outline">
+        <mat-label for="username">Username</mat-label>
+        <input id="username" type="text" matInput [formField]="loginForm.userName" />
       </mat-form-field>
-      <mat-form-field>
-        <mat-label>password</mat-label>
-        <input matInput />
+      @if (loginForm.userName().touched() && loginForm.userName().invalid()) {
+        @for (error of loginForm.userName().errors(); track $index) {
+          <mat-error>{{ error.message }}</mat-error>
+        }
+      }
+      <mat-form-field appearance="outline">
+        <mat-label for="password">Password</mat-label>
+        <input id="password" type="text" matInput [formField]="loginForm.password" />
       </mat-form-field>
+      @if (loginForm.password().touched() && loginForm.password().invalid()) {
+        @for (error of loginForm.password().errors(); track error) {
+          <mat-error>{{ error.message }}</mat-error>
+        }
+      }
     </form>
   </mat-card-content>
   <mat-card-footer>
-    <button matButton>Log In</button>
+    <button type="button" [disabled]="!loginForm().valid()" (click)="submitDataForm()" matButton>
+      Log In
+    </button>
   </mat-card-footer>
 </mat-card>

@@ -6,18 +6,10 @@ import { AuthService } from '@app/data/services/auth/auth.service';
 import { SidebarService } from '@app/data/services/side-bar/sidebar.service';
 import DashboardComponent from '@app/layouts/dashboard/dashboard';
 import SidebarComponent from '@app/layouts/sidebar/sidebar';
-import { About } from '../about/about';
 
 @Component({
   selector: 'app-home',
-  imports: [
-    MatSlideToggleModule,
-    SidebarComponent,
-    DashboardComponent,
-    MatSidenavModule,
-    MatIcon,
-    About,
-  ],
+  imports: [MatSlideToggleModule, SidebarComponent, DashboardComponent, MatSidenavModule, MatIcon],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

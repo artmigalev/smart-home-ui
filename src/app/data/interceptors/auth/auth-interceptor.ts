@@ -1,8 +1,13 @@
-import { HttpEventType, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpHandlerFn,
+  HttpInterceptorFn,
+  HttpRequest,
+} from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '@app/data/services/token/token.service';
-import { tap } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 
 export const authInterceptor: HttpInterceptorFn = (
   request: HttpRequest<unknown>,
@@ -18,20 +23,14 @@ export const authInterceptor: HttpInterceptorFn = (
 
     return next(authRequestApi);
   }
-  return next(request).pipe(
-    tap((event) => {
-      if (event.type === HttpEventType.Response) {
-        switch (event.status) {
-          case 401: {
-            router.navigate(['/login']);
-            break;
-          }
 
-          default: {
-            break;
-          }
-        }
+  return next(request).pipe(
+    catchError((error: HttpErrorResponse) => {
+      if (error.status === 401) {
+        serviceToken.tokenRemove();
+        router.navigate(['/login']);
       }
+      return throwError(() => error);
     }),
   );
 };

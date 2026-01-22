@@ -6,14 +6,17 @@ export const routes: Routes = [
     path: '',
     component: Home,
     title: 'App Layout',
-
-    children: [
-      {
-        path: 'about',
-        loadComponent: () => import('./pages/home/home'),
-        title: 'App Layout',
-      },
-    ],
+    // canActivate: [
+    //   () => {
+    //     const router = inject(Router);
+    //     const serviceAuth = inject(AuthService);
+    //     if (!serviceAuth.isAuthenticated()) {
+    //       const loginPath = router.parseUrl('/login');
+    //       return new RedirectCommand(loginPath, { skipLocationChange: true });
+    //     }
+    //     return true;
+    //   },
+    // ],
   },
   {
     path: 'login',
