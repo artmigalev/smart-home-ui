@@ -9,6 +9,7 @@ export const apiInterceptor: HttpInterceptorFn = (
     const apiRequest = request.clone({
       url: `${environment.apiUrl}${request.url}`,
     });
+
     return next(apiRequest);
   }
 

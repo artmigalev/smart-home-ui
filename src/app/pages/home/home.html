@@ -11,9 +11,5 @@
   >
     <app-sidebar></app-sidebar>
   </mat-drawer>
-  @if (userIsAuth()) {
-    <app-dashboard></app-dashboard>
-  } @else {
-    <app-about></app-about>
-  }
+  <app-dashboard></app-dashboard>
 </mat-drawer-container>
