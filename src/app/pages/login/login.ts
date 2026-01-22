@@ -8,6 +8,7 @@ import {
   MatCardFooter,
 } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '@app/data/services/auth/auth.service';
 import { UserRequest } from '@app/types/user.interface';
 type LoginData = UserRequest;
@@ -23,6 +24,7 @@ type LoginData = UserRequest;
     MatFormFieldModule,
     MatCardFooter,
     FormField,
+    MatInputModule,
   ],
   templateUrl: './login.html',
   styleUrl: './login.scss',
