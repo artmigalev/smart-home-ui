@@ -1,6 +1,7 @@
 import { effect, inject, Injectable, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { rxResource, toSignal } from '@angular/core/rxjs-interop';
 import { ApiCallsService } from './api/api-calls.service';
+import { EMPTY } from 'rxjs';
 
 export interface DashBoard {
   id: string;
@@ -12,28 +13,32 @@ export interface DashBoard {
   providedIn: 'root',
 })
 export class DashboardService {
-  serviceApiCalls = inject(ApiCallsService);
+  private _serviceApiCalls = inject(ApiCallsService);
 
-  private _dashboards = toSignal(this.serviceApiCalls.getDashboards(), { initialValue: undefined });
-  private dashboards = signal<DashBoard[] | []>([]);
+  dashboards = toSignal(this._serviceApiCalls.getDashboards(), { initialValue: [] });
+  activeDashboard = signal<DashBoard | undefined>(this.dashboards()[0]);
 
-  private activeDashboard = signal<DashBoard>(this.dashboards()[0]);
-
-  boards = this.dashboards.asReadonly();
-  activeBard = this.activeDashboard.asReadonly();
+  dashboardResource = rxResource({
+    params: () => this.activeDashboard(),
+    stream: ({ params }) => (params ? this._serviceApiCalls.getDashBoardWithId(params.id) : EMPTY),
+  });
 
   constructor() {
     effect(() => {
-      if (this._dashboards() && this._dashboards()!.length > 0) {
-        this.dashboards.set(this._dashboards()!);
+      if (!this.activeDashboard() && this.dashboards().length > 0) {
+        this.activateDashboard();
       }
     });
   }
 
-  activateDashboard(id: DashBoard['id']) {
-    const activeBoard = this.dashboards().find((board) => board.id === id);
-    if (activeBoard) {
-      this.activeDashboard.set(activeBoard);
+  activateDashboard(id?: DashBoard['id']) {
+    if (id) {
+      const activeBoard = this.dashboards()!.find((board) => board.id === id);
+      if (activeBoard) {
+        this.activeDashboard.set(activeBoard);
+      }
+    } else {
+      this.activeDashboard.set(this.dashboards()[0]);
     }
   }
 }
