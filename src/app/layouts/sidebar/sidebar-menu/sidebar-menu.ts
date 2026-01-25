@@ -13,8 +13,8 @@ import { DashBoard, DashboardService } from '@app/data/services/dashbord.service
 export default class SidebarMenuComponent {
   serviceAuth = inject(AuthService);
   serviceDashboard = inject(DashboardService);
-  dashboards = computed(() => this.serviceDashboard.boards());
-  activeBoard = computed(() => this.serviceDashboard.activeBard());
+  dashboards = computed(() => this.serviceDashboard.dashboards());
+  activeBoard = computed(() => this.serviceDashboard.activeDashboard());
 
   onClickBoard(id: DashBoard['id']) {
     this.serviceDashboard.activateDashboard(id);
