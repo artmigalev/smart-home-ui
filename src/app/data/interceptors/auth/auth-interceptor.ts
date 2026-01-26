@@ -7,6 +7,7 @@ import {
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '@app/data/services/token/token.service';
+import { MessagesForUser } from '@app/shared/messages-for-user.enum';
 import { catchError, throwError } from 'rxjs';
 
 export const authInterceptor: HttpInterceptorFn = (
@@ -28,9 +29,12 @@ export const authInterceptor: HttpInterceptorFn = (
     catchError((error: HttpErrorResponse) => {
       if (error.status === 401) {
         serviceToken.tokenRemove();
+        console.log('invalid');
         router.navigate(['/login']);
+
+        return throwError(() => new Error(MessagesForUser.UNAUTHORIZED_ERROR));
       }
-      return throwError(() => error);
+      return throwError(() => new Error(MessagesForUser.OTHER_ERROR));
     }),
   );
 };

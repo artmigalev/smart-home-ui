@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Endpoints_GET, Endpoints_POST } from '@app/shared/endpoints.enum';
 import { UserToken } from '@app/types/token.interface';
 import { UserProfileResponse, UserRequest } from '@app/types/user.interface';
-import { Observable, of, take } from 'rxjs';
+import { Observable, of, take, tap } from 'rxjs';
 import { TokenService } from '../token/token.service';
 
 // const userTest = {
@@ -30,18 +30,13 @@ export class AuthService {
   getUser(): Observable<UserProfileResponse | undefined> {
     return this.http.get<UserProfileResponse>(Endpoints_GET.PROFILE);
   }
-  login(data: UserRequest) {
-    return this.http
-      .post<UserToken>(Endpoints_POST.LOGIN, data)
-      .pipe(take(1))
-      .subscribe({
-        next: (t: UserToken) => this.serviceToken.tokenSave(t),
-        complete: () => {
-          console.log('user Login');
-          this.router.navigate(['/']);
-        },
-      });
+  login(data: UserRequest): Observable<Error | UserToken> {
+    return this.http.post<UserToken>(Endpoints_POST.LOGIN, data).pipe(
+      take(1),
+      tap((token) => this.serviceToken.tokenSave(token)),
+    );
   }
+
   logout() {
     this.serviceToken.tokenRemove();
   }

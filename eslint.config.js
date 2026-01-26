@@ -22,6 +22,7 @@ export default defineConfig([
     ],
     processor: angular.processInlineTemplates,
     rules: {
+      'no-undef-init': 'off',
       'no-unused-vars': 'off',
       'unused-imports/no-unused-imports': 'error',
       'unused-imports/no-unused-vars': [
