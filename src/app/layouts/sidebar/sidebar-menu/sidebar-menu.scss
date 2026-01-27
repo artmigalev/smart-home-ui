@@ -31,16 +31,20 @@
   gap: 10px;
   height: 100%;
 }
-.container-info {
-  border: 1px solid;
-  span {
-    border: 1px solid;
-    height: 100%;
-    padding: 5px;
-    border-radius: 100px;
-  }
+.user-inf-container {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  span {
+    flex-basis: 50px;
+    padding: 5px;
+    border-radius: 100px;
+    text-align: center;
+    font: var(--mat-sys-headline-large);
+  }
+  button {
+    width: max-content;
+    flex-grow: 1;
+  }
 }

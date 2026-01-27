@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, linkedSignal } from '@angular/core';
 import { UserCredentials } from '@app/shared/user.enum';
 import { UserToken } from '@app/types/token.interface';
 import { filter, fromEvent, map } from 'rxjs';
@@ -14,7 +14,9 @@ export class TokenService {
     map((event) => this.changeStorage(event)),
   );
 
-  token = signal<StorageToken>();
+  token = linkedSignal<StorageToken | undefined>(() => {
+    return this.tokenGet()?.token;
+  });
 
   constructor() {
     const token = this.tokenGet();

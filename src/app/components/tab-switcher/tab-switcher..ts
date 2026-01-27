@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { TabsService } from '@app/data/services/tab/tabs.service';
+import { Tab } from '@app/types/tab.interface';
 
 @Component({
   selector: 'app-tab-switcher',
@@ -12,7 +13,7 @@ import { TabsService } from '@app/data/services/tab/tabs.service';
 export default class TabSwitcherComponent {
   tabService = inject(TabsService);
 
-  dataWithTabs = this.tabService.tabsNamesAndIds;
+  tabs = input<Tab[]>();
 
   toggleTab(event: MatTabChangeEvent) {
     this.tabService.activateTab(event.tab.id!);

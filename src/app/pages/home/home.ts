@@ -16,7 +16,7 @@ import SidebarComponent from '@app/layouts/sidebar/sidebar';
 export default class Home {
   serviceSidebar = inject(SidebarService);
   serviceAuth = inject(AuthService);
-  userIsAuth = computed(() => this.serviceAuth.isAuthenticated());
+  userIsAuth = computed(() => this.serviceAuth.isAuthenticated);
 
   protected readonly title = signal('smart-home-ui');
 

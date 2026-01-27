@@ -1,5 +1,7 @@
-<mat-tab-group (selectedTabChange)="toggleTab($event)">
-  @for (tab of dataWithTabs(); track $index) {
-    <mat-tab id="{{ tab.id }}" label="{{ tab.title }}" />
-  }
-</mat-tab-group>
+@if (tabs()) {
+  <mat-tab-group (selectedTabChange)="toggleTab($event)">
+    @for (tab of tabs(); track $index) {
+      <mat-tab id="{{ tab.id }}" label="{{ tab.title }}" />
+    }
+  </mat-tab-group>
+}

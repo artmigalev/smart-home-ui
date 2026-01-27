@@ -4,9 +4,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '@app/data/services/auth/auth.service';
 import { DashBoard, DashboardService } from '@app/data/services/dashbord.service';
+import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-sidebar-menu',
-  imports: [MatButtonModule, MatIconModule, RouterLink],
+  standalone: true,
+  imports: [MatButtonModule, MatIconModule, RouterLink, NgClass],
   templateUrl: './sidebar-menu.html',
   styleUrl: './sidebar-menu.scss',
 })
@@ -15,6 +17,7 @@ export default class SidebarMenuComponent {
   serviceDashboard = inject(DashboardService);
   dashboards = computed(() => this.serviceDashboard.dashboards());
   activeBoard = computed(() => this.serviceDashboard.activeDashboard());
+  user = computed(() => this.serviceAuth.user.value());
 
   onClickBoard(id: DashBoard['id']) {
     this.serviceDashboard.activateDashboard(id);

@@ -39,10 +39,11 @@ export class AuthService {
 
   logout() {
     this.serviceToken.tokenRemove();
+    this.router.navigate(['/login']);
   }
 
   isAuthenticated = computed(() => {
-    if (this.serviceToken.token()) {
+    if (this.user.value()) {
       return true;
     }
     return false;

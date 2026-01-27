@@ -15,5 +15,5 @@ import { Card } from '@app/types/card.interface';
 export default class CardListComponent {
   readonly Layouts = Layouts;
 
-  cards = input<Card[]>();
+  cards = input<Card[] | undefined>();
 }

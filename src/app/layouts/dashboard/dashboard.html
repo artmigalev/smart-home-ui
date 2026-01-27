@@ -1,9 +1,8 @@
-@if (serviceAuth.isAuthenticated()) {
-  <app-tab-switcher></app-tab-switcher>
-
-  <app-card-list [cards]="activeTab()?.cards"></app-card-list>
-} @else {
-  <div class="bg-dashboard">
-    <img src="AdobeStock_556468321-scaled.webp" alt="" />
-  </div>
+@if (isLoading()) {
+  <app-spinner [isShow]="isLoading()" />
+} @else if (emptyDashboards()) {
+  <app-notify [message]="userMessage" />
+} @else if (dashboard()) {
+  <app-tab-switcher [tabs]="dashboard()?.tabs"></app-tab-switcher>
+  <app-card-list [cards]="tab()?.cards"></app-card-list>
 }
