@@ -1,0 +1,17 @@
+:host {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .notify-layout {
+    top: 50%;
+    margin: 0 auto;
+    .notify-title {
+      text-align: center;
+      width: max-content;
+      font: var(--mat-sys-headline-large);
+      text-align: center;
+    }
+  }
+}
