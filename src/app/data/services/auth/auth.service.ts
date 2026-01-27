@@ -43,7 +43,7 @@ export class AuthService {
   }
 
   isAuthenticated = computed(() => {
-    if (this.user.value()) {
+    if (this.serviceToken.token()) {
       return true;
     }
     return false;
