@@ -17,7 +17,10 @@ export class TokenService {
   token = signal<StorageToken>();
 
   constructor() {
-    this.token.set(this.tokenGet()?.token);
+    const token = this.tokenGet();
+    if (token) {
+      this.token.set(this.tokenGet()?.token);
+    }
     this.setUpListener();
   }
   setUpListener() {
