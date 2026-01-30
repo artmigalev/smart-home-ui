@@ -1,5 +1,5 @@
 import { Tab } from './tab.interface';
 
-export interface ResponseData {
+export interface ResponseTabs {
   tabs: Tab[];
 }
