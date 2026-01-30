@@ -1,8 +1,9 @@
 @if (isLoading()) {
   <app-spinner [isShow]="isLoading()" />
 } @else if (emptyDashboards()) {
-  <app-notify [message]="userMessage" />
-} @else if (dashboard()) {
-  <app-tab-switcher [tabs]="dashboard()?.tabs"></app-tab-switcher>
-  <app-card-list [cards]="tab()?.cards"></app-card-list>
+  <app-notify [message]="emptyStateMessage" />
+} @else if (tabs()) {
+  <app-tab-switcher [tabs]="tabs()" />
+
+  <router-outlet />
 }
