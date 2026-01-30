@@ -4,12 +4,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AuthService } from '@app/data/services/auth/auth.service';
 import { SidebarService } from '@app/data/services/side-bar/sidebar.service';
-import DashboardComponent from '@app/layouts/dashboard/dashboard';
 import SidebarComponent from '@app/layouts/sidebar/sidebar';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [MatSlideToggleModule, SidebarComponent, DashboardComponent, MatSidenavModule, MatIcon],
+  imports: [MatSlideToggleModule, SidebarComponent, MatSidenavModule, MatIcon, RouterOutlet],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

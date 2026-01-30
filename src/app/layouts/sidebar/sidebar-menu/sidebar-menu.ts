@@ -3,7 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '@app/data/services/auth/auth.service';
-import { DashBoard, DashboardService } from '@app/data/services/dashbord.service';
+import { DashBoard, DashboardService } from '@app/data/services/dashboard/dashbord.service';
 import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-sidebar-menu',

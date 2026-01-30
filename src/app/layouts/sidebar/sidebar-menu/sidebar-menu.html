@@ -1,18 +1,17 @@
 @if (serviceAuth.isAuthenticated()) {
   <div class="container-tabs">
     @for (board of dashboards(); track board.id) {
-      <button
+      <a
         [ngClass]="board.id === activeBoard()?.id ? 'active' : ''"
         role="button"
         matFab
         extended
+        [routerLink]="['dashboards', board.id]"
         [tabIndex]="board.id"
-        (keyup)="onClickBoard(board.id)"
-        (click)="onClickBoard(board.id)"
       >
         <mat-icon>{{ board.icon }}</mat-icon>
         {{ board.title }}
-      </button>
+      </a>
     }
   </div>
   <div class="user-inf-container">
