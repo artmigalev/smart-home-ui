@@ -1,7 +1,7 @@
 import { computed, inject, Injectable, linkedSignal } from '@angular/core';
 import { Tab } from '../../../types/tab.interface';
 import { Card } from '@app/types/card.interface';
-import { DashboardService } from '../dashbord.service';
+import { DashboardService } from '../dashboard/dashbord.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ export class TabsService {
   dashboard = computed(() => this._serviceDashboards.dashboardResource.value());
 
   protected _tabs = linkedSignal(() => this.dashboard()?.tabs);
-  private _activeTabId = linkedSignal<Tab['id'] | undefined>(() => this.dashboard()?.tabs[0].id);
+  _activeTabId = linkedSignal<Tab['id'] | undefined>(() => this.dashboard()?.tabs[0].id);
 
   tabs = computed<Tab[] | undefined>(() => this._tabs());
 

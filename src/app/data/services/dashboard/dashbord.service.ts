@@ -1,6 +1,6 @@
 import { effect, inject, Injectable, signal } from '@angular/core';
 import { rxResource, toSignal } from '@angular/core/rxjs-interop';
-import { ApiCallsService } from './api/api-calls.service';
+import { ApiCallsService } from '../api/api-calls.service';
 import { EMPTY } from 'rxjs';
 
 export interface DashBoard {
