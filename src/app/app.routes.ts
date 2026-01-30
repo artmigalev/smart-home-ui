@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import Home from './pages/home/home';
 import NotFound from './pages/not-found/not-found';
+import { dashboardResolver } from './shared/resolvers/dashboard/dashboard.resolver';
+import { tabResolver } from './shared/resolvers/tab/tab.resolver';
 export const routes: Routes = [
   {
     path: '',
@@ -10,6 +12,18 @@ export const routes: Routes = [
       {
         path: 'dashboards/:dashboardId',
         loadComponent: () => import('./layouts/dashboard/dashboard'),
+        title: 'DashboardPage',
+        resolve: { dashboard: dashboardResolver },
+        children: [
+          {
+            path: ':tabId',
+            loadComponent: () => import('./components/tab/tab'),
+            title: 'Tab Page',
+            resolve: {
+              tab: tabResolver,
+            },
+          },
+        ],
       },
     ],
   },
