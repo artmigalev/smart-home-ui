@@ -3,9 +3,7 @@
   width: 100%;
   border-bottom: 2px solid var(--mat-sys-surface-variant);
   background-color: var(--mat-sys-on-primary-fixed);
-  .link {
-    padding: 4px 0 4px 0;
-  }
+
   @include mat.button-overrides(
     (
       text-label-text-size: var(--mat-sys-body-large-size),
@@ -13,6 +11,12 @@
       text-container-height: 4rem,
     )
   );
+}
+.tab-group {
+  width: max-content;
+  .tab {
+    display: none;
+  }
 }
 .active {
   @include mat.button-overrides(
