@@ -26,6 +26,9 @@
         "@schematics/angular:directive": {
           "type": "directive",
           "standalone": true
+        },
+        "@schematics/angular:resolver": {
+          "typeSeparator": "."
         }
       },
       "root": "",
