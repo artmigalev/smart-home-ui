@@ -1,6 +1,6 @@
 import { Component, computed, effect, inject } from '@angular/core';
 import { AuthService } from '@app/data/services/auth/auth.service';
-import { DashboardService } from '@app/data/services/dashboard/dashbord.service';
+import { DashboardService } from '@app/data/services/dashboard/dashboard.service';
 import { MessagesForUser } from '@app/shared/messages-for-user.enum';
 import TabSwitcherComponent from '@components/tab-switcher/tab-switcher.';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -10,7 +10,7 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { ApiCallsService } from '@app/data/services/api/api-calls.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
-import { ResponseTabs } from '@app/types/response-tabs.interface';
+import { DashBoardData } from '@app/types/dashboard.interface';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -26,7 +26,7 @@ export default class DashboardComponent {
   route = inject(ActivatedRoute);
   router = inject(Router);
 
-  dashboard = toSignal(this.route.data.pipe(map((data) => data['dashboard'] as ResponseTabs)));
+  dashboard = toSignal(this.route.data.pipe(map((data) => data['dashboard'] as DashBoardData)));
 
   tabs = computed(() => this.dashboard()?.tabs ?? []);
 

@@ -1,10 +1,12 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AuthService } from '@app/data/services/auth/auth.service';
-import { DashBoard, DashboardService } from '@app/data/services/dashboard/dashbord.service';
+import { DashBoard, DashboardService } from '@app/data/services/dashboard/dashboard.service';
 import { NgClass } from '@angular/common';
+import { Dashboards } from '@app/types/dashboard.interface';
+import { UserProfileResponse } from '@app/types/user.interface';
 @Component({
   selector: 'app-sidebar-menu',
   standalone: true,
@@ -15,9 +17,13 @@ import { NgClass } from '@angular/common';
 export default class SidebarMenuComponent {
   serviceAuth = inject(AuthService);
   serviceDashboard = inject(DashboardService);
-  dashboards = computed(() => this.serviceDashboard.dashboards());
-  activeBoard = computed(() => this.serviceDashboard.activeDashboard());
-  user = computed(() => this.serviceAuth.user.value());
+  route = inject(ActivatedRoute);
+
+  activeBoard = computed(() => this.route.snapshot.paramMap.get('dashboardId'));
+
+  dashboards = input<Dashboards>();
+
+  userInfo = input<UserProfileResponse>();
 
   onClickBoard(id: DashBoard['id']) {
     this.serviceDashboard.activateDashboard(id);

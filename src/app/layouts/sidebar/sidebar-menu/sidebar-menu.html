@@ -2,7 +2,7 @@
   <div class="container-tabs">
     @for (board of dashboards(); track board.id) {
       <a
-        [ngClass]="board.id === activeBoard()?.id ? 'active' : ''"
+        [ngClass]="board.id === activeBoard() ? 'active' : ''"
         role="button"
         matFab
         extended
@@ -15,7 +15,7 @@
     }
   </div>
   <div class="user-inf-container">
-    <span class="inf">{{ user()?.initials }}</span>
+    <span class="inf">{{ userInfo()?.initials }}</span>
     <button role="button" matFab extended (click)="serviceAuth.logout()">
       <mat-icon>logout</mat-icon>
       logout

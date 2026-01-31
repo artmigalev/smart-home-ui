@@ -3,7 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { TabsService } from '@app/data/services/tab/tabs.service';
 import CardListComponent from '@app/layouts/card-list/card-list';
-import { ResponseTabs } from '@app/types/response-tabs.interface';
+import { DashBoardData } from '@app/types/dashboard.interface';
 import { Tab as ITab } from '@app/types/tab.interface';
 import { map } from 'rxjs';
 
@@ -17,7 +17,7 @@ export default class Tab {
   tabService = inject(TabsService);
   route = inject(ActivatedRoute);
   tabId = input.required<ITab['id']>();
-  tabs = toSignal<ResponseTabs['tabs']>(
+  tabs = toSignal<DashBoardData['tabs']>(
     this.route.data.pipe(
       map((data) => {
         return data['dashboard']['tabs'];

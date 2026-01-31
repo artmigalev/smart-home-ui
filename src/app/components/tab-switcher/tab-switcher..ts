@@ -1,5 +1,5 @@
 import { Component, inject, input } from '@angular/core';
-import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { TabsService } from '@app/data/services/tab/tabs.service';
 import { Tab } from '@app/types/tab.interface';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,10 +19,10 @@ export default class TabSwitcherComponent {
 
   tabs = input<Tab[]>();
 
-  toggleTab(event: MatTabChangeEvent) {
-    this.router.navigate([event.tab.id], {
-      relativeTo: this.route,
-    });
-    this.tabService.activateTab(event.tab.id!);
+  toggleTab() {
+    // this.router.navigate([event.tab.id], {
+    //   relativeTo: this.route,
+    // });
+    // this.tabService.activateTab(event.tab.id!);
   }
 }

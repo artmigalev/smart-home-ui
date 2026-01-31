@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Endpoints_GET } from '@app/shared/endpoints.enum';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
-import { ResponseTabs } from '@app/types/response-tabs.interface';
-import { DashBoard } from '../dashboard/dashbord.service';
+import { DashBoardData, Dashboards } from '@app/types/dashboard.interface';
+import { DashBoard } from '../dashboard/dashboard.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,17 +11,24 @@ import { DashBoard } from '../dashboard/dashbord.service';
 export class ApiCallsService {
   private _http = inject(HttpClient);
 
-  getDashboards(): Observable<DashBoard[] | []> {
+  getDashboards(): Observable<Dashboards | []> {
     return this._http.get<DashBoard[]>(Endpoints_GET.DASHBOARDS).pipe(
       map((result) => result),
       catchError(() => of([])),
     );
   }
 
-  getDashBoardWithId(id: DashBoard['id']): Observable<ResponseTabs> {
-    return this._http.get<ResponseTabs>(`${Endpoints_GET.DASHBOARDS}/${id}`).pipe(
-      map((data) => data),
-      catchError((error) => throwError(() => new Error(error))),
+  getDashBoardWithId(id: DashBoard['id']): Observable<DashBoardData | undefined> {
+    if (!id) return new Observable();
+    return this._http.get<DashBoardData>(`${Endpoints_GET.DASHBOARDS}/${id}`).pipe(
+      map((data) => {
+        console.log(data);
+        return data;
+      }),
+      catchError((error) => {
+        console.log(error);
+        return throwError(() => new Error(error));
+      }),
     );
   }
 

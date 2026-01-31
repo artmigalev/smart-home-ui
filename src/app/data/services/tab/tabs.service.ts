@@ -1,35 +1,27 @@
-import { computed, inject, Injectable, linkedSignal } from '@angular/core';
-import { Tab } from '../../../types/tab.interface';
+import { computed, inject, Injectable } from '@angular/core';
+import { Tab } from '@app/types/tab.interface';
 import { Card } from '@app/types/card.interface';
-import { DashboardService } from '../dashboard/dashbord.service';
+import { DashboardService } from '../dashboard/dashboard.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TabsService {
-  private _serviceDashboards = inject(DashboardService);
-  dashboard = computed(() => this._serviceDashboards.dashboardResource.value());
+  serviceDashboard = inject(DashboardService);
 
-  protected _tabs = linkedSignal(() => this.dashboard()?.tabs);
-  _activeTabId = linkedSignal<Tab['id'] | undefined>(() => this.dashboard()?.tabs[0].id);
+  tabs = computed<Tab[] | undefined>(() => this.serviceDashboard.dashboardResource.value()?.tabs);
 
-  tabs = computed<Tab[] | undefined>(() => this._tabs());
-
-  tab = computed<Tab | undefined>(() =>
-    this._tabs()?.find((tab) => tab.id === this._activeTabId()),
-  );
-
-  activateTab(id: Tab['id']) {
-    this._activeTabId.set(id);
+  getTab(id: Tab['id']): Tab | undefined {
+    return this.tabs()?.find((tab) => tab.id === id);
   }
 
-  updateTabCards(newCards: Card[]): void {
-    const updateTab: Tab = {
-      ...this.tab()!,
-      cards: newCards,
-    };
-    this._tabs.update(
-      (previous) => previous && previous.map((tab) => (tab.id === updateTab.id ? updateTab : tab)),
-    );
+  updateTab(newCards: Card[], tabId: Tab['id']): Tab | undefined {
+    const tab = this.getTab(tabId);
+    if (tab)
+      return {
+        ...tab,
+        cards: newCards,
+      };
+    return;
   }
 }

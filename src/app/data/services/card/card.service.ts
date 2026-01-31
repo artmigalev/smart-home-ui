@@ -1,23 +1,29 @@
-import { computed, inject, Injectable } from '@angular/core';
-import { TabsService } from '../tab/tabs.service';
-import { Card } from '@app/types/card.interface';
+import { Injectable } from '@angular/core';
+import { Card, CardItem } from '@app/types/card.interface';
+import { DeviceItem } from '@app/types/device.interface';
+import { SensorItem } from '@app/types/sensor.interface';
+import { TypeEntities } from '@app/shared/type-entities.enum';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CardService {
-  private tabsService = inject(TabsService);
-
-  cards = computed(() => this.tabsService.tab()?.cards);
-
-  allCards = computed(() => Array.from(this.tabsService.tabs() || [], (tab) => tab.cards).flat());
-
-  getCard(id: Card['id']): Card | undefined {
-    return this.cards()?.find((card) => card.id === id);
+  getCard(cards: Card[], id: Card['id']): Card | undefined {
+    return id ? cards.find((card) => card.id === id) : undefined;
   }
 
-  updateCards(card: Card): void {
-    const upgradeCards = this.cards()?.map((tabCard) => (card.id === tabCard.id ? card : tabCard));
-    this.tabsService.updateTabCards(upgradeCards!);
+  updateCards(card: Card, cards: Card[]): Card[] {
+    return cards.map((cardOld) => (cardOld.id === card.id ? card : cardOld));
+  }
+
+  updateCardItems(item: CardItem, card: Card): CardItem[] {
+    return card.items.map((itemCard) => (itemCard.label === item.label ? item : itemCard));
+  }
+
+  getCardDevices(card: Card): DeviceItem[] {
+    return card.items.filter((item) => item.type === TypeEntities.device);
+  }
+  getCardSensors(card: Card): SensorItem[] {
+    return card.items.filter((item) => item.type === TypeEntities.sensor);
   }
 }
